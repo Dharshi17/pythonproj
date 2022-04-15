@@ -4,7 +4,7 @@ itsdangerous==1.1.0
 Jinja2==2.11.2
 joblib==1.0.0
 MarkupSafe==1.1.1
-numpy==1.19.5
+numpy==1.22.3
 pandas==1.0.0
 python-dateutil==3.9.11
 pytz==2020.5
