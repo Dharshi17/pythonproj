@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>TITLE</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<style>
+.back{
+ background-image: url("{{ url_for('static', filename='image/img.jpg') }}");
+background-repeat:no-repeat;
+background-size:cover;
+}
+.white{
+color:black;
+}
+.nspace{
+margin:15px 15px 30px 30px;
+padding:9px 10px;
+background:pink;
+width:500px
+}
+.space{
+margin:10px 30px;
+padding:10px 10px;
+background:skyblue;
+width:500px
+}
+.gap{
+padding:10px 20px;
+}
+</style>
+  
+</head>
+
+<body >
+ <div>
+	<div class="jumbotron">
+	<h1 style="text-align:center">BANK LOAN RISK PREDICTION</h1>
+	
+	</div>
+<div class="back">
+     <!-- Main Input For Receiving Query to our ML -->
+    <form class="form-group" action="{{ url_for('predict')}}"method="post">
+    		
+		<div class="row">
+		<div class="gap col-md-6 ">
+
+
+		<label class="white"  for="">CHECKINGSTATUS</label>
+		<select class="nspace form-control" name="CHECKINGSTATUS" id="CHECKINGSTATUS">
+  <option value=0>0_to_200</option>
+  <option value=2>less_0</option>
+  <option value=3>no_checking</option>
+  <option value=1>greater_200</option>
+  
+ </select>
+
+
+
+
+		<label class="white"  for="">LOANDURATION </label>
+		<input type="number" class="space form-control" step="0.01" name="LOANDURATION" placeholder="LOANDURATION" required="required" /><br>
+
+
+
+		<label class="white"  for="">CREDITHISTORY</label>
+		<select class="nspace form-control" name="CREDITHISTORY" id="CREDITHISTORY">
+  <option value=1>credits_paid_to_date</option>
+  <option value=4>prior_payments_delayed</option>
+  <option value=3>outstanding_credit</option>
+  <option value=0>all_credits_paid_back</option>
+  <option value=2>no_credits</option>
+  
+ </select>
+  
+
+		<label class="white"  for="">LOANPURPOSE</label>
+		<select class="nspace form-control" name="LOANPURPOSE" id="LOANPURPOSE">
+  <option value=6>other</option>
+  <option value=2>car_new</option>
+  <option value=5>furniture</option>
+  <option value=9>retraining</option>
+  <option value=4>education</option>
+  <option value=10>vacation</option>
+  <option value=0>appliances</option>
+  <option value=3>car_used</option>
+  <option value=8>repairs</option>
+  <option value=7>radio_tv</option>
+  <option value=1>business</option>
+  
+ </select>
+
+		
+
+		<label class="white"  for=""> LOANAMOUNT </label>
+		<input type="number" class="space form-control" step="0.01" name="LOANAMOUNT" placeholder="LOANAMOUNT" required="required" /><br>
+
+
+		
+		<label class="white"  for="">EXISTINGSAVINGS</label>
+		<select class="nspace form-control" name="EXISTINGSAVINGS" id="EXISTINGSAVINGS">
+  <option value=0>100_to_500</option>
+  <option value=3>less_100</option>
+  <option value=1>500_to_1000</option>
+  <option value=4>unknown</option>
+  <option value=2>greater_1000</option>
+  
+ </select>
+ 
+
+
+
+
+		<label class="white"  for="">EMPLOYMENTDURATION</label>
+		<select class="nspace form-control" name="EMPLOYMENTDURATION" id="EMPLOYMENTDURATION">
+  <option value=3>less_1</option>
+  <option value=0>1_to_4</option>
+  <option value=2>greater_7</option>
+  <option value=1>4_to_7</option>
+  <option value=4>unemployed</option>
+  
+ </select>
+
+
+
+ 
+		<label class="white"  for="">INSTALLMENTPERCENT</label>
+		<input type="number" class="space form-control" step="0.01" name="INSTALLMENTPERCENT" placeholder="INSTALLMENTPERCENT" required="required" /><br>
+  
+
+
+
+		<label class="white"  for="">SEX</label>
+		<select class="nspace form-control" name="SEX" id="SEX">
+  <option value=0>female</option>
+  <option value=1>male</option>
+  
+ </select>
+
+
+
+		<label class="white"  for="">OTHERSONLOAN</label>
+		<select class="nspace form-control" name="OTHERSONLOAN" id="OTHERSONLOAN">
+  <option value=2>none</option>
+  <option value=0>co-applicant</option>
+  <option value=1>guarantor</option>
+  
+ </select>
+		
+
+
+		<label class="white"  for="">CURRENTRESIDENCEDURATION</label>
+		<input type="number" class="space form-control" step="0.01" name="CURRENTRESIDENCEDURATION" placeholder="CURRENTRESIDENCEDURATION" required="required" /><br>
+  
+
+
+
+
+		</div>
+
+<div class="gap col-md-6">
+
+
+				
+		<label class="white"  for="">OWNSPROPERTY</label>
+		<select class="nspace form-control" name="OWNSPROPERTY" id="OWNSPROPERTY">
+  <option value=2>savings_insurance</option>
+  <option value=1>real_estate</option>
+  <option value=3>unknown</option>
+  <option value=0>car_other</option>
+  
+ </select>
+
+
+
+		<label class="white"  for="">AGE</label>
+		<input type="number" class="space form-control" step="0.01" name="AGE" placeholder="AGE" required="required" /><br>
+
+
+
+<label class="white"  for="">INSTALLMENTPLANS</label>
+		<select class="nspace form-control" name="INSTALLMENTPLANS" id="INSTALLMENTPLANS">
+  <option value=2>none</option>
+  <option value=1>stores</option>
+  <option value=3>bank</option>
+  
+ </select>
+
+
+
+<label class="white"  for="">HOUSING</label>
+		<select class="nspace form-control" name="HOUSING" id="HOUSING">
+  <option value=1>own</option>
+  <option value=0>free</option>
+  <option value=2>rent</option>
+  
+ </select>
+
+
+        	<label class="white"  for="">EXISTINGCREDITSCOUNT</label>
+		<input type="number" class="space form-control" step="0.01" name="EXISTINGCREDITSCOUNT" placeholder="EXISTINGCREDITSCOUNT" required="required" /><br>
+
+
+
+<label class="white"  for="">JOB</label>
+		<select class="nspace form-control" name="JOB" id="JOB">
+  <option value=1>skilled</option>
+  <option value=0>management_self-employed</option>
+  <option value=3>unskilled</option>
+  <option value=2>unemployed</option>
+  
+ </select>
+
+  
+
+
+		<label class="white"  for="">DEPENDENTS</label>
+		<input type="number" class="space form-control" step="0.01" name="DEPENDENTS" placeholder="DEPENDENTS" required="required" /><br>
+  
+<label class="white"  for="">TELEPHONE</label>
+		<select class="nspace form-control" name="TELEPHONE" id="TELEPHONE">
+  <option value=0>none</option>
+  <option value=1>yes</option>
+  
+ </select>
+
+
+
+
+  
+<label class="white"  for="">FOREIGNWORKER</label>
+		<select class="nspace form-control" name="FOREIGNWORKER" id="FOREIGNWORKER">
+  <option value=1>yes</option>
+  <option value=0>no</option>
+  
+ </select>
+ 
+		
+</div>
+</div>
+
+<div style="padding:2% 35%">
+  <button type="submit" class="btn btn-success btn-block" style="width:350px;padding:20px">Predict</button>		
+</div>
+      
+    </form>
+</div>
+   <br>
+   <br>
+
+<div  style="background:skyblue;padding:2% 40%">
+   {{ prediction_text }}
+</div>
+ </div>
+
+
+</body>
+</html>
